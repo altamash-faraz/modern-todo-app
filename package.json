@@ -1,0 +1,31 @@
+{
+  "name": "modern-todo-app",
+  "version": "1.0.0",
+  "description": "A beautiful, modern, and feature-rich todo application built with vanilla HTML, CSS, and JavaScript",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx live-server .",
+    "deploy": "gh-pages -d ."
+  },
+  "keywords": [
+    "todo",
+    "task-manager",
+    "productivity",
+    "javascript",
+    "html",
+    "css",
+    "responsive",
+    "modern-ui"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/modern-todo-app.git"
+  },
+  "homepage": "https://yourusername.github.io/modern-todo-app",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "gh-pages": "^6.0.0"
+  }
+}

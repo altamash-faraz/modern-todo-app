@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Todo App</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1><i class="fas fa-check-circle"></i> My Todo App</h1>
+        <p class="subtitle">Stay organized and productive</p>
+      </header>
+
+      <div class="stats-bar">
+        <div class="stat">
+          <span class="stat-number" id="totalTasks">0</span>
+          <span class="stat-label">Total</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" id="completedTasks">0</span>
+          <span class="stat-label">Completed</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" id="pendingTasks">0</span>
+          <span class="stat-label">Pending</span>
+        </div>
+      </div>
+
+      <div class="add-task-section">
+        <div class="input-group">
+          <input
+            type="text"
+            id="taskInput"
+            placeholder="What needs to be done?"
+            maxlength="100"
+          />
+          <select id="prioritySelect" class="priority-select">
+            <option value="low">Low Priority</option>
+            <option value="medium" selected>Medium Priority</option>
+            <option value="high">High Priority</option>
+          </select>
+          <button id="addTaskBtn" class="add-btn">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">
+          <i class="fas fa-list"></i> All
+        </button>
+        <button class="filter-btn" data-filter="pending">
+          <i class="fas fa-clock"></i> Pending
+        </button>
+        <button class="filter-btn" data-filter="completed">
+          <i class="fas fa-check"></i> Completed
+        </button>
+      </div>
+
+      <div class="tasks-container">
+        <div id="tasksList" class="tasks-list">
+          <!-- Tasks will be dynamically added here -->
+        </div>
+
+        <div id="emptyState" class="empty-state">
+          <i class="fas fa-clipboard-list"></i>
+          <h3>No tasks yet</h3>
+          <p>Add a task above to get started!</p>
+        </div>
+      </div>
+
+      <div class="actions-bar">
+        <button id="clearCompletedBtn" class="clear-btn">
+          <i class="fas fa-trash"></i> Clear Completed
+        </button>
+        <button id="clearAllBtn" class="clear-all-btn">
+          <i class="fas fa-trash-alt"></i> Clear All
+        </button>
+      </div>
+    </div>
+
+    <!-- Task Template -->
+    <template id="taskTemplate">
+      <div class="task-item" data-priority="">
+        <div class="task-content">
+          <input type="checkbox" class="task-checkbox" />
+          <span class="task-text"></span>
+          <span class="task-priority"></span>
+        </div>
+        <div class="task-actions">
+          <button class="edit-btn" title="Edit task">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button class="delete-btn" title="Delete task">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    </template>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Edit Task</h3>
+          <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+          <input
+            type="text"
+            id="editTaskInput"
+            placeholder="Task description"
+          />
+          <select id="editPrioritySelect" class="priority-select">
+            <option value="low">Low Priority</option>
+            <option value="medium">Medium Priority</option>
+            <option value="high">High Priority</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button id="cancelEditBtn" class="cancel-btn">Cancel</button>
+          <button id="saveEditBtn" class="save-btn">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
