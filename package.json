@@ -6,8 +6,7 @@
   "scripts": {
     "start": "npx live-server .",
     "dev": "npx live-server .",
-    "deploy:gh": "gh-pages -d .",
-    "build": "echo 'No build process needed for static site'"
+    "deploy:gh": "gh-pages -d ."
   },
   "keywords": [
     "todo",

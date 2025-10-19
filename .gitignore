@@ -8,6 +8,8 @@ yarn-error.log*
 .dist/
 build/
 dist/
+*.min.js
+*.min.css
 
 # Environment variables
 .env
@@ -49,3 +51,10 @@ coverage/
 # Temporary folders
 tmp/
 temp/
+
+# Cache files
+.cache/
+.parcel-cache/
+
+# Vercel
+.vercel
