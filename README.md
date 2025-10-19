@@ -1,12 +1,10 @@
 # 🎯 My Todo App
 
-A beautiful, modern, and feature-rich todo application built with vanilla HTML, CSS, and JavaScript. This app helps you stay organized and productive with an intuitive interface and powerful features.
+A beautiful, modern, and feature-rich todo application built with HTML, CSS, and JavaScript. This app helps you stay organized and productive with an intuitive interface and powerful features.
 
 ## 🌐 Live Demo
 
 ✨ **Try it now**: [https://mymodern-todoapp.vercel.app/](https://mymodern-todoapp.vercel.app/)
-
-[![Todo App Screenshot](https://img.shields.io/badge/Live%20Demo-Vercel-black?style=for-the-badge&logo=vercel)](https://mymodern-todoapp.vercel.app/)
 
 ## ✨ Features
 
