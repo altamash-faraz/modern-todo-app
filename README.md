@@ -2,6 +2,12 @@
 
 A beautiful, modern, and feature-rich todo application built with vanilla HTML, CSS, and JavaScript. This app helps you stay organized and productive with an intuitive interface and powerful features.
 
+## 🌐 Live Demo
+
+✨ **Try it now**: [https://mymodern-todoapp.vercel.app/](https://mymodern-todoapp.vercel.app/)
+
+[![Todo App Screenshot](https://img.shields.io/badge/Live%20Demo-Vercel-black?style=for-the-badge&logo=vercel)](https://mymodern-todoapp.vercel.app/)
+
 ## ✨ Features
 
 ### 🎨 Beautiful Design
@@ -84,6 +90,11 @@ Your tasks are automatically saved to your browser's localStorage, which means:
 
 ## 🚀 Getting Started
 
+### Option 1: Use the Live App
+🌐 **Primary**: [https://mymodern-todoapp.vercel.app/](https://mymodern-todoapp.vercel.app/) (Vercel)  
+🌐 **Alternative**: [https://altamash-faraz.github.io/modern-todo-app/](https://altamash-faraz.github.io/modern-todo-app/) (GitHub Pages)
+
+### Option 2: Run Locally
 1. **Download** or clone the project files
 2. **Open** `index.html` in any modern web browser
 3. **Start adding tasks** and stay organized!
@@ -156,6 +167,22 @@ Works in all modern browsers:
 - ✅ Firefox 60+
 - ✅ Safari 12+
 - ✅ Edge 79+
+
+## 🚀 Deployment
+
+This app is deployed on multiple platforms for maximum accessibility:
+
+### Vercel (Primary)
+- **URL**: https://mymodern-todoapp.vercel.app/
+- **Features**: Fast global CDN, automatic deployments
+- **Performance**: Optimized for speed and reliability
+
+### GitHub Pages (Alternative)
+- **URL**: https://altamash-faraz.github.io/modern-todo-app/
+- **Repository**: https://github.com/altamash-faraz/modern-todo-app
+- **Features**: Direct deployment from GitHub repository
+
+Both deployments are automatically updated when changes are pushed to the repository.
 
 ## 🤝 Contributing
 
