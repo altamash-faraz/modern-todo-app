@@ -30,13 +30,6 @@ A beautiful, modern, and feature-rich todo application built with vanilla HTML, 
 - 🧹 **Bulk actions** (clear completed, clear all)
 - 💾 **Auto-save** to localStorage (your data persists between sessions)
 
-### 🎯 User Experience
-- **Keyboard shortcuts** for quick actions
-- **Visual notifications** for all actions
-- **Smooth animations** and micro-interactions
-- **Empty state** with helpful guidance
-- **Confirmation dialogs** for destructive actions
-
 ## 🛠️ How to Use
 
 ### Adding Tasks
@@ -66,33 +59,10 @@ The app is fully responsive and optimized for:
 - 🖥️ **Desktop** (1200px+)
 - 📱 **Tablet** (768px - 1199px)
 - 📲 **Mobile** (320px - 767px)
-
-## 🎨 Color Scheme
-
-### Priority Colors
-- 🔴 **High Priority**: Red (#ef4444)
-- 🟡 **Medium Priority**: Orange (#f59e0b)
-- 🟢 **Low Priority**: Green (#10b981)
-
-### UI Colors
-- 💜 **Primary**: Purple gradient (#667eea to #764ba2)
-- 🔵 **Accent**: Indigo (#4f46e5)
-- ⚪ **Background**: White with glassmorphism
-- 🌫️ **Secondary**: Light gray (#f8fafc)
-
-## 💾 Data Persistence
-
-Your tasks are automatically saved to your browser's localStorage, which means:
-- ✅ Tasks persist between browser sessions
-- ✅ No server required - works completely offline
-- ✅ Data stays private on your device
-- ❌ Clearing browser data will remove tasks
-
 ## 🚀 Getting Started
 
 ### Option 1: Use the Live App
 🌐 **Primary**: [https://mymodern-todoapp.vercel.app/](https://mymodern-todoapp.vercel.app/) (Vercel)  
-🌐 **Alternative**: [https://altamash-faraz.github.io/modern-todo-app/](https://altamash-faraz.github.io/modern-todo-app/) (GitHub Pages)
 
 ### Option 2: Run Locally
 1. **Download** or clone the project files
@@ -100,49 +70,6 @@ Your tasks are automatically saved to your browser's localStorage, which means:
 3. **Start adding tasks** and stay organized!
 
 No installation, no dependencies, no build process required!
-
-## 📂 Project Structure
-
-```
-todo-app/
-├── index.html          # Main HTML structure
-├── styles.css          # All CSS styles and animations
-├── script.js           # JavaScript functionality
-└── README.md           # This file
-```
-
-## 🌟 Features in Detail
-
-### Smart Statistics
-- Real-time counters that animate when values change
-- Visual representation of your productivity
-- Helps you track progress at a glance
-
-### Priority System
-- Visual priority indicators with colors
-- Helps you focus on important tasks first
-- Flexible priority assignment and editing
-
-### Filter System
-- Quick filtering between all, pending, and completed tasks
-- Maintains filter state during session
-- Visual active filter indication
-
-### Edit Modal
-- Clean, focused editing experience
-- Edit both task text and priority
-- Keyboard navigation support
-
-### Notifications
-- Beautiful toast notifications for all actions
-- Different colors for different types (success, error, info)
-- Auto-dismiss with manual close option
-
-### Empty State
-- Helpful guidance when no tasks are present
-- Encourages users to add their first task
-- Beautiful illustration and clear messaging
-
 ## 🎯 Perfect For
 
 - 📝 Daily task management
@@ -159,28 +86,6 @@ The app is built with clean, modular code that's easy to customize:
 - **Animations**: Adjust transition durations and easing functions
 - **Layout**: Responsive grid system using Flexbox and CSS Grid
 - **Features**: Add new functionality by extending the TodoApp class
-
-## 🌐 Browser Support
-
-Works in all modern browsers:
-- ✅ Chrome 60+
-- ✅ Firefox 60+
-- ✅ Safari 12+
-- ✅ Edge 79+
-
-## 🚀 Deployment
-
-This app is deployed on multiple platforms for maximum accessibility:
-
-### Vercel (Primary)
-- **URL**: https://mymodern-todoapp.vercel.app/
-- **Features**: Fast global CDN, automatic deployments
-- **Performance**: Optimized for speed and reliability
-
-### GitHub Pages (Alternative)
-- **URL**: https://altamash-faraz.github.io/modern-todo-app/
-- **Repository**: https://github.com/altamash-faraz/modern-todo-app
-- **Features**: Direct deployment from GitHub repository
 
 Both deployments are automatically updated when changes are pushed to the repository.
 
