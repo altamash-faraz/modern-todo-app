@@ -4,9 +4,17 @@ class TodoApp {
         this.tasks = JSON.parse(localStorage.getItem('todoTasks')) || [];
         this.currentFilter = 'all';
         this.editingTaskId = null;
+        this.currentTheme = localStorage.getItem('theme') || 'light';
+        this.taskSuggestions = [
+            'Buy groceries', 'Schedule dentist appointment', 'Complete project report',
+            'Call mom', 'Exercise for 30 minutes', 'Read a book', 'Plan weekend trip',
+            'Update resume', 'Learn something new', 'Organize workspace',
+            'Pay bills', 'Water plants', 'Review budget', 'Backup computer files'
+        ];
         
         this.initializeElements();
         this.bindEvents();
+        this.initializeTheme();
         this.render();
     }
 
@@ -15,9 +23,21 @@ class TodoApp {
         this.taskInput = document.getElementById('taskInput');
         this.prioritySelect = document.getElementById('prioritySelect');
         this.addTaskBtn = document.getElementById('addTaskBtn');
+        this.inputSuggestions = document.getElementById('inputSuggestions');
+        
+        // Theme toggle
+        this.themeToggle = document.getElementById('themeToggle');
+        
+        // Progress elements
+        this.progressCircle = document.querySelector('.progress-circle-fill');
+        this.progressText = document.querySelector('.progress-text');
         
         // Filter elements
         this.filterBtns = document.querySelectorAll('.filter-btn');
+        this.filterSlider = document.querySelector('.filter-slider');
+        this.allCount = document.getElementById('allCount');
+        this.pendingCount = document.getElementById('pendingCount');
+        this.completedCount = document.getElementById('completedCount');
         
         // Task list
         this.tasksList = document.getElementById('tasksList');
@@ -51,10 +71,20 @@ class TodoApp {
             if (e.key === 'Enter') this.addTask();
         });
 
+        // Input suggestions
+        this.taskInput.addEventListener('input', (e) => this.showSuggestions(e.target.value));
+        this.taskInput.addEventListener('blur', () => {
+            setTimeout(() => this.hideSuggestions(), 150);
+        });
+
+        // Theme toggle
+        this.themeToggle.addEventListener('click', () => this.toggleTheme());
+
         // Filter events
-        this.filterBtns.forEach(btn => {
+        this.filterBtns.forEach((btn, index) => {
             btn.addEventListener('click', (e) => {
-                this.setFilter(e.target.dataset.filter);
+                this.setFilter(e.target.closest('.filter-btn').dataset.filter);
+                this.updateFilterSlider(index);
             });
         });
 
@@ -76,6 +106,79 @@ class TodoApp {
         this.editTaskInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') this.saveEdit();
         });
+    }
+
+    initializeTheme() {
+        document.documentElement.setAttribute('data-theme', this.currentTheme);
+        this.updateThemeIcon();
+    }
+
+    toggleTheme() {
+        this.currentTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', this.currentTheme);
+        localStorage.setItem('theme', this.currentTheme);
+        this.updateThemeIcon();
+        this.showNotification(`Switched to ${this.currentTheme} theme`, 'info');
+    }
+
+    updateThemeIcon() {
+        const icon = this.themeToggle.querySelector('i');
+        icon.className = this.currentTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+    }
+
+    showSuggestions(value) {
+        if (value.length < 2) {
+            this.hideSuggestions();
+            return;
+        }
+
+        const filtered = this.taskSuggestions.filter(suggestion => 
+            suggestion.toLowerCase().includes(value.toLowerCase()) &&
+            !this.tasks.some(task => task.text.toLowerCase() === suggestion.toLowerCase())
+        );
+
+        if (filtered.length === 0) {
+            this.hideSuggestions();
+            return;
+        }
+
+        this.inputSuggestions.innerHTML = filtered.slice(0, 5).map(suggestion => 
+            `<div class="suggestion-item" onclick="window.todoApp.selectSuggestion('${suggestion}')">${suggestion}</div>`
+        ).join('');
+        
+        this.inputSuggestions.style.display = 'block';
+    }
+
+    hideSuggestions() {
+        this.inputSuggestions.style.display = 'none';
+    }
+
+    selectSuggestion(suggestion) {
+        this.taskInput.value = suggestion;
+        this.hideSuggestions();
+        this.taskInput.focus();
+    }
+
+    updateFilterSlider(activeIndex) {
+        const activeBtn = this.filterBtns[activeIndex];
+        const sliderWidth = activeBtn.offsetWidth;
+        const sliderLeft = activeBtn.offsetLeft;
+        
+        this.filterSlider.style.width = `${sliderWidth}px`;
+        this.filterSlider.style.left = `${sliderLeft}px`;
+    }
+
+    updateProgress() {
+        const total = this.tasks.length;
+        const completed = this.tasks.filter(t => t.completed).length;
+        const percentage = total === 0 ? 0 : Math.round((completed / total) * 100);
+        
+        // Update progress circle
+        const circumference = 2 * Math.PI * 25; // radius = 25
+        const offset = circumference - (percentage / 100) * circumference;
+        
+        this.progressCircle.style.strokeDashoffset = offset;
+        this.progressText.textContent = `${percentage}%`;
     }
 
     generateId() {
@@ -186,6 +289,10 @@ class TodoApp {
             btn.classList.toggle('active', btn.dataset.filter === filter);
         });
         
+        // Update filter slider position
+        const activeIndex = Array.from(this.filterBtns).findIndex(btn => btn.dataset.filter === filter);
+        this.updateFilterSlider(activeIndex);
+        
         this.render();
     }
 
@@ -271,6 +378,14 @@ class TodoApp {
         this.animateCounter(this.totalTasksEl, total);
         this.animateCounter(this.completedTasksEl, completed);
         this.animateCounter(this.pendingTasksEl, pending);
+        
+        // Update filter counts
+        this.allCount.textContent = total;
+        this.pendingCount.textContent = pending;
+        this.completedCount.textContent = completed;
+        
+        // Update progress
+        this.updateProgress();
     }
 
     animateCounter(element, target) {
@@ -407,12 +522,25 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape' && window.todoApp.editModal.classList.contains('show')) {
             window.todoApp.closeModal();
         }
+        
+        // Ctrl/Cmd + D to toggle theme
+        if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
+            e.preventDefault();
+            window.todoApp.toggleTheme();
+        }
     });
     
     // Focus task input on page load
-    document.getElementById('taskInput').focus();
+    setTimeout(() => {
+        document.getElementById('taskInput').focus();
+    }, 500);
     
-    console.log('🎉 Todo App initialized successfully!');
+    // Initialize filter slider position
+    setTimeout(() => {
+        window.todoApp.updateFilterSlider(0);
+    }, 100);
+    
+    console.log('🎉 Enhanced Todo App initialized successfully!');
 });
 
 // Add some sample tasks for demonstration (only if no tasks exist)
@@ -422,23 +550,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const sampleTasks = [
                 {
                     id: 'sample1',
-                    text: 'Welcome to your new Todo App! 🎉',
+                    text: 'Welcome to your enhanced Todo App! 🎉',
                     priority: 'high',
                     completed: false,
                     createdAt: new Date().toISOString()
                 },
                 {
                     id: 'sample2',
-                    text: 'Try editing this task by clicking the edit button',
+                    text: 'Try the new dark mode toggle in the header',
                     priority: 'medium',
                     completed: false,
                     createdAt: new Date().toISOString()
                 },
                 {
                     id: 'sample3',
-                    text: 'Mark this task as complete by checking the box',
+                    text: 'Check out the animated progress ring',
                     priority: 'low',
-                    completed: false,
+                    completed: true,
                     createdAt: new Date().toISOString()
                 }
             ];
