@@ -14,12 +14,6 @@ A beautiful, modern, and feature-rich todo application built with HTML, CSS, and
 - **Dark/light theme support** with beautiful color schemes
 - **Glassmorphism effects** for a premium look
 
-### 📊 Smart Organization
-- **Priority levels** (High, Medium, Low) with color-coded indicators
-- **Task statistics** showing total, completed, and pending tasks
-- **Filter system** to view all, pending, or completed tasks
-- **Real-time counter animations** for visual feedback
-
 ### 🚀 Powerful Functionality
 - ✅ **Add tasks** with priority levels
 - ✏️ **Edit tasks** with inline editing modal
